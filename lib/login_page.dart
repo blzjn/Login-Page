@@ -17,7 +17,7 @@ class _LoginDemoState extends State<LoginDemo> {
   final TextEditingController _pass_data = TextEditingController();
   TextEditingController clear_data = TextEditingController();
 
-  bool passwordVisible=false;
+  bool passwordVisible = false;
 
   final _formKey = GlobalKey<FormState>();
 
@@ -83,10 +83,17 @@ class _LoginDemoState extends State<LoginDemo> {
                       border: OutlineInputBorder(),
                       labelText: 'Password',
                       hintText: 'Enter your username as password',
-                      
-                      ),
-                      
-                      
+                      suffixIcon: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            passwordVisible = !passwordVisible;
+                          });
+                        },
+                         child: Icon(
+            passwordVisible ? Icons.visibility : Icons.visibility_off,
+            color: Colors.grey,
+                         )
+                      )),
                 ),
               ),
               Padding(
@@ -140,7 +147,7 @@ class _LoginDemoState extends State<LoginDemo> {
             builder: (ctx) => SecondPage(
                   value: _email_data.text,
                 )));
-      } 
+      }
       // else {
       //   setState(() {
       //     visibilityChecker = false;
